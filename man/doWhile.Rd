@@ -7,18 +7,18 @@
 doWhile(do, While = F, Return = NULL)
 }
 \arguments{
-\item{do}{Expression to evaluate at least once.}
+\item{do}{Expression to evaluate at least once. The "do" expression will be repeated until the "While" condition is FALSE.}
 
-\item{While}{Logical expression indicating the stopping condition. The doWhile loop will end when the While condition is no longer TRUE.}
+\item{While}{Logical expression indicating the stopping condition. The doWhile loop will end when the "While" condition is no longer TRUE. Default is FALSE (execute "do" expression once and then return).}
 
-\item{Return}{Expression to evaluate and return (allows access to variables scoped inside the doWhile function).}
-
-\item{env}{Environment in which to evaluate expressions.}
+\item{Return}{Expression to evaluate and return (allows returning of variables scoped inside the doWhile function). Default is NULL.}
 }
 \description{
 doWhile
 }
 \examples{
+k <<- 0
+doWhile({k<<-k+1; print(k)}, {k<5})
 
 # Note that i remains zero here due to scoping
 i=0
@@ -30,10 +30,10 @@ i=0
 doWhile(do={i<<-i+1; print(i)}, While={i<10}, Return=i)
 print(i)
 
-# or we can declare i (and jPI) in the scope of the doWhile:
-jPI=doWhile(do={if(!exists("i")|!exists("jPI")){i<-0;jPI<-0}
-                else{i=i+1; jPI=jPI+pi}},
-            While={i<10},
+# or we can declare j (and jPI) in the scope of the doWhile:
+jPI=doWhile(do={if(!exists("j")|!exists("jPI")){j<-0;jPI<-0}
+                else{j=j+1; jPI=jPI+pi}},
+            While={j<10},
             Return={jPI})
 print(jPI)
 
@@ -41,4 +41,5 @@ print(jPI)
 Y = doWhile(do    ={ if(!exists("E")) {E<-list(x=pi, y=exp(1))}; E$y=E$x+E$y},
             While ={ E$y < 100},
             Return={ E$y})
+print(Y)
 }

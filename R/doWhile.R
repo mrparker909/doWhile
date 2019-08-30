@@ -1,9 +1,11 @@
 #' @title doWhile
 #' @param do     Expression to evaluate at least once. The "do" expression will be repeated until the "While" condition is FALSE.
-#' @param While  Logical expression indicating the stopping condition. The doWhile loop will end when the "While" condition is no longer TRUE.
-#' @param Return Expression to evaluate and return (allows returning of variables scoped inside the doWhile function).
+#' @param While  Logical expression indicating the stopping condition. The doWhile loop will end when the "While" condition is no longer TRUE. Default is FALSE (execute "do" expression once and then return).
+#' @param Return Expression to evaluate and return (allows returning of variables scoped inside the doWhile function). Default is NULL.
 #' @export
 #' @examples
+#' k <<- 0
+#' doWhile({k<<-k+1; print(k)}, {k<5})
 #'
 #' # Note that i remains zero here due to scoping
 #' i=0
