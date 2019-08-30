@@ -17,8 +17,12 @@ doWhile(do, While = F, Return = NULL)
 doWhile
 }
 \examples{
+
+doWhile({if(!exists("k")) {k<-1} else {k<-k+1}; print(k)}, {k<5})
+
 k <<- 0
 doWhile({k<<-k+1; print(k)}, {k<5})
+rm(k)
 
 # Note that i remains zero here due to scoping
 i=0
