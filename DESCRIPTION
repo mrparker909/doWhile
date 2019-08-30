@@ -1,13 +1,15 @@
 Package: doWhile
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Implements a doWhile loop.
+Version: 0.0.1
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Matthew",
+           family = "Parker",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: What license it uses
+           email = "mrparker909@gmail.com")
+Description: This package implements a doWhile loop in R.
+License: Apache 2.0
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat (>= 2.1.0)
