@@ -2,9 +2,11 @@
 #' @param do     Expression to evaluate at least once. The "do" expression will be repeated until the "While" condition is FALSE.
 #' @param While  Logical expression indicating the stopping condition. The doWhile loop will end when the "While" condition is no longer TRUE. Default is FALSE (execute "do" expression once and then return).
 #' @param Return Expression to evaluate and return (allows returning of variables scoped inside the doWhile function). Default is NULL.
+#' @param vars   List of variables to pass by value to the doWhile loop function.
 #' @export
 #' @examples
 #'
+#' doWhile(do={k=k+1; print(k)}, While={k<5},vars=list(k=0))
 #' doWhile({if(!exists("k")) {k<-1} else {k<-k+1}; print(k)}, {k<5})
 #'
 #' k <<- 0
@@ -33,10 +35,12 @@
 #'             While ={ E$y < 100},
 #'             Return={ E$y})
 #' print(Y)
-doWhile <- function(do, While=F, Return=NULL) {
-    eval(substitute(do), env=environment())
-  while(eval(substitute(While), env=environment())) {
-    eval(substitute(do), env=environment())
+doWhile <- function(do, While=F, Return=NULL, vars=NULL) {
+  env = environment()
+  if(!is.null(vars)) { list2env(vars, envir = env) }
+    eval(substitute(do), env=env)
+  while(eval(substitute(While), env=env)) {
+    eval(substitute(do), env=env)
   }
-  return(eval(substitute(Return), env=environment()))
+  return(eval(substitute(Return), env=env))
 }

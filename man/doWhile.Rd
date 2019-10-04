@@ -4,7 +4,7 @@
 \alias{doWhile}
 \title{doWhile}
 \usage{
-doWhile(do, While = F, Return = NULL)
+doWhile(do, While = F, Return = NULL, vars = NULL)
 }
 \arguments{
 \item{do}{Expression to evaluate at least once. The "do" expression will be repeated until the "While" condition is FALSE.}
@@ -12,12 +12,15 @@ doWhile(do, While = F, Return = NULL)
 \item{While}{Logical expression indicating the stopping condition. The doWhile loop will end when the "While" condition is no longer TRUE. Default is FALSE (execute "do" expression once and then return).}
 
 \item{Return}{Expression to evaluate and return (allows returning of variables scoped inside the doWhile function). Default is NULL.}
+
+\item{vars}{List of variables to pass by value to the doWhile loop function.}
 }
 \description{
 doWhile
 }
 \examples{
 
+doWhile(do={k=k+1; print(k)}, While={k<5},vars=list(k=0))
 doWhile({if(!exists("k")) {k<-1} else {k<-k+1}; print(k)}, {k<5})
 
 k <<- 0
